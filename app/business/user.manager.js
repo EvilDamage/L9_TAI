@@ -17,6 +17,7 @@ function create(context) {
             throw applicationException.new(applicationException.UNAUTHORIZED, 'User with that email does not exist');
         }
         userData = await user;
+        console.log(user)
         await PasswordDAO.authorize(user.id, hashString(password));
         const token = await TokenDAO.create(userData);
         return getToken(token);
